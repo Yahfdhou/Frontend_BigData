@@ -1,0 +1,53 @@
+<svg width="256" height="256" viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="boxFront" x1="78" y1="112" x2="178" y2="210" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#1E5A8C"/>
+      <stop offset="1" stop-color="#184B72"/>
+    </linearGradient>
+    <linearGradient id="boxSide" x1="138" y1="108" x2="206" y2="204" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#6BB0D7"/>
+      <stop offset="1" stop-color="#4D8FBE"/>
+    </linearGradient>
+    <linearGradient id="boxTop" x1="104" y1="90" x2="184" y2="130" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#8BC7E5"/>
+      <stop offset="1" stop-color="#64A9D4"/>
+    </linearGradient>
+    <linearGradient id="lens" x1="92" y1="28" x2="172" y2="124" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#E9F5FF"/>
+      <stop offset="1" stop-color="#D7EAF8"/>
+    </linearGradient>
+    <linearGradient id="ring" x1="84" y1="34" x2="168" y2="116" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#2E6EA0"/>
+      <stop offset="1" stop-color="#1D4E74"/>
+    </linearGradient>
+    <linearGradient id="handle" x1="62" y1="126" x2="96" y2="164" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#2C628E"/>
+      <stop offset="1" stop-color="#184B72"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="126" y1="60" x2="160" y2="96" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#D8C07A"/>
+      <stop offset="1" stop-color="#B79B56"/>
+    </linearGradient>
+  </defs>
+
+  <rect x="14" y="14" width="228" height="228" rx="56" fill="#FBF8F1"/>
+
+  <path d="M78 104L130 82L182 104L130 126L78 104Z" fill="url(#boxTop)"/>
+  <path d="M78 104L130 126V202L78 180V104Z" fill="url(#boxFront)"/>
+  <path d="M182 104L130 126V202L182 180V104Z" fill="url(#boxSide)"/>
+
+  <path d="M92 106L106 119L106 134L92 121V106Z" fill="#FFFFFF"/>
+  <path d="M96 110L106 119" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round"/>
+
+  <path d="M160 134C145 125 141 116 141 104C141 86 156 72 174 72C192 72 207 86 207 104C207 122 192 136 174 136C171 136 168 136 165 135" stroke="url(#ring)" stroke-width="13" stroke-linecap="round"/>
+  <circle cx="174" cy="104" r="21" fill="url(#lens)" stroke="#E2D9BA" stroke-width="3"/>
+  <path d="M180 84L171 104L157 95L169 118L190 100L180 84Z" fill="url(#gold)"/>
+  <circle cx="174" cy="104" r="5" fill="#FFFFFF"/>
+
+  <path d="M150 136L113 173" stroke="url(#handle)" stroke-width="18" stroke-linecap="round"/>
+  <rect x="103" y="168" width="28" height="14" rx="7" transform="rotate(-45 103 168)" fill="#1D4E74"/>
+
+  <path d="M146 142L164 150L171 170L181 150L201 143L181 136L173 116L164 136L146 142Z" fill="#FFFFFF" fill-opacity="0.85"/>
+  <path d="M166 58L169 66L177 68L169 71L166 79L163 71L155 68L163 66L166 58Z" fill="#2E6EA0"/>
+  <path d="M196 85L199 91L205 93L199 96L196 102L193 96L187 93L193 91L196 85Z" fill="#2E6EA0"/>
+</svg>
