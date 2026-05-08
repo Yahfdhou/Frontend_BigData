@@ -10,7 +10,6 @@ export default defineNuxtRouteMiddleware(async (to) => {
     return navigateTo('/login')
   }
 
-  // If we have a token but no user data, fetch the current user
   if (auth.token.value && !auth.user.value) {
     await auth.getCurrentUser()
   }
