@@ -1,102 +1,69 @@
-<!-- Banner -->
-<p align="center">
-  <img src="/project-brand.svg" alt="Project" width="320" />
-</p>
+# Amazon Reviews Frontend (Nuxt 3 + Tailwind)
 
-# Amazon Reviews Frontend 
+Frontend analytique moderne pour consommer l'API Flask exposee sur `http://localhost:5000`.
 
+## Fonctionnalites implementees
 
+- Pages:
+  - `/dashboard` -> metriques globales (`/api/stats`)
+  - `/online` -> flux live (`/api/live`) + metriques (`/api/stats`) avec polling 10s
+  - `/offline` -> dataset batch (`/api/offline`) + metriques (`/api/stats`)
+- Service API centralise dans `app/composables/useApi.ts`
+- Types TypeScript dedies dans `app/types/api.ts`
+- Normalisation live/offline pour un rendu unifie:
+  - `text = item.text || item.Text`
+  - `score = item.score ?? item.Score`
+  - `summary = item.summary || item.Summary`
+- Etats UX complets: loading, error, empty
+- Dashboard visuel moderne (layout, cartes, table, badges sentiment)
+- Icones via `lucide-vue-next`
 
----
+## Configuration
 
-<!-- Bannière -->
-<p align="center">
-  <img src="/project-brand.svg" alt="Project" width="320" />
-</p>
+Creer un fichier `.env` a la racine:
 
-# Amazon Reviews Frontend — Interface analytique moderne
+```bash
+NUXT_PUBLIC_API_BASE_URL=http://localhost:5000
+```
 
-Une interface claire et moderne construite avec Nuxt 3 pour explorer les avis Amazon, visualiser les sentiments et analyser les prédictions du backend Flask.
+Le frontend utilise cette valeur pour les appels API. Un `nitro.devProxy` est configure pour `/api` en developpement.
 
-- تنظيم مركزي لاستدعاءات API في `app/composables/useApi.ts`.
-- توحيد صيغ الردود (live / offline) للعرض بشكل متناسق.
-- صفحات: لوحة التحكم، التدفق الحي، التحليل الدفعي، استكشاف النماذج، والآراء الأفضل/الأسوأ.
-## Vue d'ensemble
-
-- Centralisation des appels API dans `app/composables/useApi.ts`.
-- Normalisation des réponses (live / offline) pour un rendu homogène.
-- Pages principales : dashboard, online (flux), offline (batch), model, predictions, sentiments.
-
-## Installation rapide
+## Lancer le projet
 
 ```bash
 npm install
-# Si votre backend tourne localement :
-export NUXT_PUBLIC_API_BASE_URL=http://localhost:5000
 npm run dev
 ```
 
-Ouvrir `http://localhost:3000`.
+Application disponible sur `http://localhost:3000`.
 
-## Fichiers où l’IP peut apparaître
+## Build production
 
-- `nuxt.config.ts` — valeur par défaut de `apiBaseUrl` et proxy Nitro.
-- `app/composables/useApi.ts` — valeur de secours utilisée si la variable d’environnement est absente.
-- `app/composables/useAuth.ts` — mêmes valeurs de secours pour les endpoints d’auth.
-
-Conseil : définissez `NUXT_PUBLIC_API_BASE_URL=http://localhost:5000` pour le développement local.
-
-## Design & UI — couleurs et animations
-
-L’application utilise une palette douce avec accents colorés pour les états. Exemple Tailwind :
-
-- Cartes positives : `bg-emerald-50` / `border-emerald-200`
-- Cartes neutres : `bg-amber-50` / `border-amber-200`
-- Cartes négatives : `bg-rose-50` / `border-rose-200`
-
-Exemple de carte avec micro-interaction :
-
-```html
-<div class="rounded-lg border border-emerald-200 bg-emerald-50 p-4 transition hover:shadow-lg hover:scale-[1.01]">
-  <!-- contenu -->
-</div>
+```bash
+npm run build
+npm run preview
 ```
 
-Ajouter une animation dans `tailwind.config.ts` (extrait) :
-
-```js
-module.exports = {
-  theme: {
-    extend: {
-      animation: {
-        'fade-in': 'fadeIn 250ms ease-out',
-      },
-      keyframes: {
-        fadeIn: {
-          '0%': { opacity: '0', transform: 'translateY(6px)' },
-          '100%': { opacity: '1', transform: 'translateY(0)' },
-        },
-      },
-    },
-  },
-}
-```
-
-## Structure résumée
+## Structure principale
 
 ```text
 app/
-  composables/
+  app.vue
+  assets/css/input.css
+  composables/useApi.ts
   components/
+    layout/TopNav.vue
+    predictions/
+      PredictionsTable.vue
+      SentimentBadge.vue
+    stats/
+      StatCard.vue
+      StatsOverview.vue
+  layouts/default.vue
   pages/
-  types/
+    index.vue
+    dashboard.vue
+    online.vue
+    offline.vue
+  types/api.ts
 ```
-
----
-
-Souhaites-tu que j’ajoute :
-1. Un bandeau SVG/PNG dans `public/` pour améliorer l’apparence GitHub.
-2. Un composant d’exemple `components/ui/AnimatedCard.vue` utilisant les animations.
-3. Une version anglaise du README.
-
-
