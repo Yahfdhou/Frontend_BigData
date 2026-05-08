@@ -102,3 +102,48 @@ npm run preview
 - Les types API sont regroupés dans `app/types/api.ts`.
 - Les composants privilégient la Composition API et `<script setup>`.
 - Les dossiers générés par Nuxt (`.nuxt/`, `.output/`) ne doivent pas être modifiés à la main.
+
+## Design & UI (couleurs, animations)
+
+L’interface applique une charte sobre et moderne : tons pastels pour les cartes, accents colorés pour les états (positif / neutre / négatif) et micro-animations pour les interactions.
+
+- Palette recommandée (exemples Tailwind) :
+  - Background cartes : `bg-emerald-50`, `bg-amber-50`, `bg-rose-50`
+  - Bordures / accents : `border-emerald-200`, `border-amber-200`, `border-rose-200`
+  - Textes importants : `text-slate-900`, accents : `text-emerald-700`, `text-rose-700`, `text-amber-700`
+
+- Animations :
+  - Hover léger sur les cartes : `transition hover:shadow-lg hover:scale-[1.01]`.
+  - Entrée progressive des listes : utiliser `animate-fade-in` (définir dans `tailwind.config.ts` si nécessaire).
+
+Exemple d’utilité dans un composant :
+
+```html
+<div class="rounded-lg border border-emerald-200 bg-emerald-50 p-4 transition hover:shadow-lg">
+  <!-- contenu -->
+</div>
+```
+
+Pour ajouter une animation personnalisée dans Tailwind, ajoutez ceci dans `tailwind.config.ts` :
+
+```js
+// tailwind.config.ts (extrait)
+module.exports = {
+  theme: {
+    extend: {
+      animation: {
+        'fade-in': 'fadeIn 300ms ease-out',
+      },
+      keyframes: {
+        fadeIn: {
+          '0%': { opacity: '0', transform: 'translateY(4px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+      },
+    },
+  },
+}
+```
+
+Conseils UI : garder les micro-animations courtes (150–300ms) et éviter d’animer des propriétés coûtantes (layout) en faveur des transforms & opacity.
+
