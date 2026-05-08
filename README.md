@@ -1,6 +1,6 @@
 # Amazon Reviews Frontend
 
-Dashboard analytique moderne construit avec Nuxt 3 pour explorer les avis Amazon, les sentiments et les prédictions du backend Flask.
+Dashboard analytique moderne construit avec Nuxt 3 pour explorer les avis Amazon, les sentiments et les prédictions du backend Flask. L’interface utilise un style visuel soigné avec des cartes, des dégradés légers et des animations discrètes pour rendre la navigation plus fluide.
 
 ## Ce que fait l’application
 
@@ -55,6 +55,20 @@ NUXT_PUBLIC_API_BASE_URL=http://3.88.50.172:5000
 ```
 
 Le frontend utilise cette variable pour cibler l’API. Le proxy Nitro est configuré dans `nuxt.config.ts` pour simplifier le développement local.
+
+Si vous lancez l’API sur votre machine, remplacez l’adresse IP par `localhost` pour que l’application fonctionne en local:
+
+```bash
+NUXT_PUBLIC_API_BASE_URL=http://localhost:5000
+```
+
+## Fichiers où l’IP est configurée
+
+- `nuxt.config.ts` : définit la valeur par défaut de `apiBaseUrl` et le proxy Nitro. C’est le point principal à modifier si vous changez d’environnement.
+- `app/composables/useApi.ts` : utilise aussi une valeur de secours pour appeler le backend si la variable d’environnement n’est pas définie.
+- `app/composables/useAuth.ts` : contient la même logique de secours pour les appels liés à l’authentification.
+
+Si votre backend tourne en local, il faut donc remplacer l’IP distante par `localhost` dans ces fichiers ou, mieux, définir `.env` avec `NUXT_PUBLIC_API_BASE_URL=http://localhost:5000`.
 
 ## Lancer le projet
 
